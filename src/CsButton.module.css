@@ -1,0 +1,37 @@
+.btn {
+  background-color: gray;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: blue;
+  color: white;
+}
+
+.secondary {
+  background-color: green;
+  color: white;
+}
+
+.com_primary {
+  composes: btn;
+  background-color: blue;
+  color: white;
+}
+
+.com_secondary {
+  composes: btn;
+  background-color: green;
+  color: white;
+}
+
+:global(.myheader) {
+  padding: 10px 20px;
+  font-size: 50px;
+  color: white;
+  background-color: dodgerblue;
+}

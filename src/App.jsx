@@ -5,7 +5,20 @@ import MapTest from './MapTest';
 import FormTest from './FormTest';
 import FormDataTest from './FormDataTest';
 import Modal from './Modal';
-import { useState } from 'react';
+import Style1 from './Style1';
+import CsButton from './CsButton';
+// import Greeting from './Greeting';
+import React, { Suspense, useState } from 'react';
+
+// const LazyGreeting = React.lazy(() => import('./Greeting'));
+const LazyGreeting = React.lazy(
+  () =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(import('./Greeting'));
+      }, 5000); // 5초 후에 Greeting 컴포넌트를 로드
+    }),
+);
 
 function App(props) {
   const [open, setOpen] = useState(false);
@@ -39,8 +52,15 @@ function App(props) {
             <button onClick={() => setOpen(false)}>닫기</button>
           </Modal>
         )}
-  
-        <Greeting></Greeting>
+
+        <Suspense fallback={<div>Loading...</div>}>
+          {/* <Greeting /> */}
+          <LazyGreeting />
+        </Suspense>
+
+        <Style1></Style1>
+
+        <CsButton></CsButton>
       </div>
     </div>
   );
