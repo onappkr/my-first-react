@@ -10,6 +10,7 @@ export const UseFormTest = () => {
   } = useForm({
     defaultValues: {
       hobbies: [], // 다중 선택을 위한 초기값
+      agreement: false, // 약관 동의 초기값 설정 (boolean)
     },
   });
 
@@ -23,6 +24,7 @@ export const UseFormTest = () => {
       formData.append('email', data.email);
       formData.append('gender', data.gender);
       formData.append('hobbies', JSON.stringify(data.hobbies));
+      formData.append('agreement', data.agreement);
 
       if (data.photo[0]) {
         formData.append('photo', data.photo[0]);
@@ -149,6 +151,24 @@ export const UseFormTest = () => {
           </label>
           {errors.gender && (
             <p style={{ color: 'red' }}>{errors.gender.message}</p>
+          )}
+        </div>
+
+        {/* 약관 동의 체크박스 추가 */}
+        <div style={{ marginTop: '15px' }}>
+          <label>
+            <input
+              type="checkbox"
+              {...register('agreement', {
+                required: '이용약관에 동의해야 등록이 가능합니다.',
+              })}
+            />
+            이용약관에 동의합니다 (필수)
+          </label>
+          {errors.agreement && (
+            <p style={{ color: 'red', fontSize: '12px', marginTop: '5px' }}>
+              {errors.agreement.message}
+            </p>
           )}
         </div>
 

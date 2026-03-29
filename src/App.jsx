@@ -1,131 +1,48 @@
+import Box from './Box';
+import EventTest from './EventTest';
+import IfTest from './IfTest';
+import MapTest from './MapTest';
+import FormTest from './FormTest';
+import FormDataTest from './FormDataTest';
+import Modal from './Modal';
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
-import heroImg from './assets/hero.png';
-import { UseFormTest } from './UseFormTest';
-import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  let array = [1, 2, 3, 4, 5, 6];
-  let filteredArray = array.filter((item) => item < 3).map((item) => item * 2);
-  console.log(filteredArray);
-
-  array.map((item) => {
-    console.log(item);
-  });
+function App(props) {
+  const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <UseFormTest></UseFormTest>
+    <div>
+      <Box>
+        <h1>안녕하세요</h1>
+        <p>This is some content inside the box.</p>
+      </Box>
+      <Box>
+        <button>클릭</button>
+      </Box>
+      <Box>
+        <EventTest></EventTest>
+      </Box>
+      <IfTest isAdmin={true}></IfTest>
+      {!props.kind && <p>kind이 값이 없습니다.</p>}
+      <MapTest></MapTest>
+      <FormTest></FormTest>
+      <FormDataTest></FormDataTest>
 
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
+      <div>
         <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
+          <h1>React Portal Example</h1>
+          <button onClick={() => setOpen(true)}>모달 열기</button>
         </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        {open && (
+          <Modal>
+            <h2>안녕하세요</h2>
+            <button onClick={() => setOpen(false)}>닫기</button>
+          </Modal>
+        )}
+  
+        <Greeting></Greeting>
+      </div>
+    </div>
   );
 }
 
