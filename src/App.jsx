@@ -7,6 +7,8 @@ import FormDataTest from './FormDataTest';
 import Modal from './Modal';
 import Style1 from './Style1';
 import CsButton from './CsButton';
+import RouterSample from './RouterSample';
+import RouterSample2 from './RouterSample2';
 // import Greeting from './Greeting';
 import React, { Suspense, useState } from 'react';
 
@@ -61,6 +63,10 @@ function App(props) {
         <Style1></Style1>
 
         <CsButton></CsButton>
+
+        <RouterSample></RouterSample>
+
+        <RouterSample2></RouterSample2>
       </div>
     </div>
   );
